@@ -1,56 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "./features/header/Header";
+import Modal from "./features/Modal/Modal";
+import SearchAndAddSection from "./features/Search/SearchAndAddSection";
+import Sidebar from "./features/Sidebar/Sidebar";
+import { setState } from "./features/slices/Tasks/taskSlice";
+import TaskSection from "./features/Tasks/TaskSection";
 
+const keyForApp = "tasky-redux-abhi";
 function App() {
+  const store = useSelector((state) => state.task);
+
+  // useEffect(() => {
+  //   localStorage.setItem(keyForApp, store);
+  // }, [store]);
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   let oldSt = localStorage.getItem(keyForApp);
+  //   if (oldSt) {
+  //     dispatch(setState(oldSt));
+  //   }
+  //   localStorage.setItem("tasky-redux-abhi", store);
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="bg-slate-100">
+      <Modal />
+      <Header />
+      <SearchAndAddSection />
+      <div className="bg-gray-100 h-screen">
+        <div className="h-screen flex flex-col md:grid w-3/4 md:grid-cols-5 mx-auto border-x border-y  mt-4 ">
+          <Sidebar />
+          <TaskSection />
+        </div>
+      </div>
     </div>
   );
 }

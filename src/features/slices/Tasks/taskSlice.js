@@ -21,20 +21,26 @@ export const taskSlice = createSlice({
         duplicateTask = { ...duplicateTask, newTask };
       } else {
         state.tasks.push(action.payload);
+        for (const taskCategory of newTask.categories) {
+          if (
+            !state.categories.find(
+              (item) =>
+                taskCategory.name.toLocaleLowerCase() ===
+                item.name.toLocaleLowerCase()
+            )
+          ) {
+            state.categories.push(taskCategory);
+          }
+        }
       }
       state.isModalOpen = false;
-      makeAllCatsVisible();
       makeCatsUnique();
+      makeAllCatsVisible();
     },
     editTask: (state, action) => {
-      makeAllCatsVisible();
       let tasks = state.tasks;
-      action.payload.categories.forEach(
-        (item) => (item.name = item.name.toLocaleLowerCase())
-      );
       state.taskUnderEdit = tasks.find((item) => item.title === action.payload);
       state.isModalOpen = true;
-      makeCatsUnique();
     },
     saveEditedTask: (state, action) => {
       action.payload.categories.forEach(
@@ -43,15 +49,28 @@ export const taskSlice = createSlice({
       let duplicateTask = state.tasks.find(
         (item) =>
           item.title.toLocaleLowerCase() ===
-          action.payload.title.toLocaleLowerCase()
+          action.payload.prevTaskTitle.toLocaleLowerCase()
       );
-      duplicateTask = { ...duplicateTask, ...action.payload };
+      const newTask = action.payload;
+      duplicateTask.title = newTask.title;
+      duplicateTask.desc = newTask.desc;
+      duplicateTask.categories = newTask.categories;
+      duplicateTask.dueDate = newTask.dueDate;
+      duplicateTask.isFavorite = newTask.isFavorite;
+      // duplicateTask = { ...duplicateTask, ...action.payload };
+      let catsSet = new Set();
+      state.tasks.forEach((item) =>
+        item.categories.forEach((item2) =>
+          catsSet.add(item2.name.toLocaleLowerCase())
+        )
+      );
+      state.categories = Array.from(catsSet).map((item) => {
+        return { name: item, isVisible: true };
+      });
       state.isModalOpen = false;
       state.taskUnderEdit = null;
-      this.makeCatsUnique();
     },
     searchInTasks: (state, action) => {
-      console.log(action.payload, "is the payload");
       state.tasks.forEach((item) => {
         if (
           item.title.toLocaleLowerCase().includes(action.payload) ||
@@ -69,28 +88,32 @@ export const taskSlice = createSlice({
     clearSearch: (state) => {
       state.tasks.forEach((item) => (item.isVisible = true));
       state.searchString = null;
+      makeAllCatsVisible();
     },
     filterByCategory: (state, action) => {
-      let tasks = state.tasks;
-      tasks.forEach((item) => {
+      state.categories.forEach((item) => {
         if (
-          !item.categories.find(
-            (catItem) => catItem.name.toLocaleLowerCase() === action.payload
-          )
+          item.name.toLocaleLowerCase() !== action.payload.toLocaleLowerCase()
         ) {
           item.isVisible = false;
         }
       });
-      tasks.forEach((item) => {
+
+      let tasks = state.tasks;
+      for (const iterator of tasks) {
         if (
-          item.categories.find(
-            (catItem) => catItem.name.toLocaleLowerCase() === action.payload
+          iterator.categories.find(
+            (item) =>
+              item.name.toLocaleLowerCase() ===
+              action.payload.toLocaleLowerCase()
           )
         ) {
-          item.isVisible = true;
+          iterator.isVisible = true;
+        } else {
+          iterator.isVisible = false;
         }
-      });
-      state.tasks = tasks;
+      }
+      state.isFilterCategoryOn = true;
     },
 
     openModalForNewTask: (state) => {
@@ -108,13 +131,50 @@ export const taskSlice = createSlice({
       cats.forEach((item) => newCatsArr.push({ name: item, isVisible: true }));
       state.categories = newCatsArr;
     },
-    makeAllCatsVisible: (state) => {
+    makeAllVisible: (state) => {
       state.categories.forEach((item) => (item.isVisible = true));
+      state.tasks.forEach((item) =>
+        item.categories.forEach((item2) => (item2.isVisible = true))
+      );
+      state.isFilterCategoryOn = false;
     },
     makeAllTasksVisible: (state) => {
       state.tasks.forEach((element) => {
         element.isVisible = true;
       });
+    },
+    cancelEditTask: (state) => {
+      state.taskUnderEdit = null;
+    },
+    deleteTask: (state, action) => {
+      let arr = state.tasks;
+      let taskToDelete = null;
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].title === action.payload.title) {
+          taskToDelete = arr[i];
+          arr.splice(i, 1);
+          i--;
+          break;
+        }
+      }
+      let sett = new Set();
+      //find all unique categories from all remaining tasks
+      for (const task of state.tasks) {
+        task.categories.forEach((item) => sett.add(item.name));
+      }
+
+      let deleteCatsSet = new Set();
+      //if deletedtask categories are not found
+      //in remaining tasks put in delete arr to delete
+      for (const category of action.payload.categories) {
+        if (!sett.has(category.name)) {
+          deleteCatsSet.add(category.name);
+        }
+      }
+      state.categories = state.categories.filter(
+        (item) => !deleteCatsSet.has(item.name)
+      );
+      console.log(state.categories);
     },
   },
 });
@@ -130,8 +190,10 @@ export const {
   openModalForNewTask,
   toggleModal,
   makeCatsUnique,
-  makeAllCatsVisible,
+  makeAllVisible: makeAllCatsVisible,
   makeAllTasksVisible,
+  cancelEditTask,
+  deleteTask,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;

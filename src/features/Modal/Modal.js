@@ -9,10 +9,10 @@ import ErrorDiv from "./ErrorDiv";
 import ReactDOM from "react-dom";
 import {
   addTask,
+  cancelEditTask,
   saveEditedTask,
   toggleModal,
 } from "../slices/Tasks/taskSlice";
-import SingleCategory from "../Sidebar/SingleCategory";
 import Category from "../Tasks/Category";
 
 function Modal() {
@@ -25,10 +25,20 @@ function Modal() {
   const [tempCats, setTempCats] = useState([]);
   const [error, setError] = useState({});
   const dispatch = useDispatch();
-
-  useEffect(() => {}, []);
+  const taskUnderEdit = useSelector((state) => state.task.taskUnderEdit);
+  const isVisible = useSelector((state) => state.task.isModalOpen);
+  useEffect(() => {
+    if (taskUnderEdit) {
+      console.log(taskUnderEdit);
+      taskTitleRef.current.value = taskUnderEdit.title;
+      taskDescRef.current.value = taskUnderEdit.desc;
+      taskDueDateRef.current.value = taskUnderEdit.dueDate;
+      isFavoriteRef.current.checked = taskUnderEdit.isFavorite;
+    }
+  }, [isVisible]);
 
   const catError = { titleE: "Please select/type a Category" };
+
   function submit(e) {
     e.preventDefault();
     if (taskTitleRef.current.value.length < 3 && tempCats.length == 0) {
@@ -51,22 +61,33 @@ function Modal() {
       return;
     }
     if (categoriesRef.current.value.length != 0) {
-      task.categories.push(makeCatObj(categoriesRef.current.value));
+      const categoriesFromInput = categoriesRef.current.value;
+      if (categoriesFromInput.includes(",")) {
+        let arr = categoriesFromInput.split(",");
+        let newArr = arr.map((item) => makeCatObj(item));
+        newArr.forEach((item) => task.categories.push(item));
+      } else task.categories.push(makeCatObj(categoriesFromInput));
     }
     if (!task.categories.length) {
       setError(catError);
     }
-    task.isFavorite = e.currentTarget[4].value === "on";
+    task.isFavorite = e.currentTarget[4].checked;
     task.searchString = null;
     task.isVisible = true;
     task.dueDate = e.currentTarget[3].value;
     // task.desc = console.log(e, task);
+
     setTempCats([]);
     document.getElementById("form").reset();
     clearDateErr();
-    dispatch(addTask(task));
+    if (taskUnderEdit) {
+      task.prevTaskTitle = taskUnderEdit.title;
+      dispatch(saveEditedTask(task));
+    } else {
+      dispatch(addTask(task));
+    }
   }
-  const isVisible = useSelector((state) => state.task.isModalOpen);
+
   let classes = "modal fixed h-screen w-screen z-10 bg-slate-600/40";
   if (!isVisible) {
     classes += " hidden";
@@ -77,6 +98,9 @@ function Modal() {
     setTempCats([]);
     clearDateErr();
     dispatch(toggleModal());
+    if (taskUnderEdit) {
+      dispatch(cancelEditTask());
+    }
   }
   function saveCat(e) {
     console.log(categoriesRef.current.value, "cats ref");
@@ -125,7 +149,11 @@ function Modal() {
               </div>
               <datalist id="cats">
                 {catsArr.map((item) => (
-                  <option className="capitalize" value={item.name} />
+                  <option
+                    className="capitalize"
+                    value={item.name}
+                    key={item.name}
+                  />
                 ))}
               </datalist>
             </div>

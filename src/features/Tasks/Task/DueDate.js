@@ -1,4 +1,8 @@
 import React from "react";
+import {
+  convertStringtoDate,
+  dateStringToObj,
+} from "../../../app/InitialState";
 
 function DueDateAndFav({ dueDate, isFavorite }) {
   let classes =
@@ -8,6 +12,7 @@ function DueDateAndFav({ dueDate, isFavorite }) {
   } else {
     classes += "text-gray-800";
   }
+
   return (
     <div className={classes}>
       <div className="time-icon flex items-baseline align-baseline self-end">
@@ -26,7 +31,9 @@ function DueDateAndFav({ dueDate, isFavorite }) {
           />
         </svg>
       </div>
-      <div className="date-string pr-4 self-center">{dueDate}</div>
+      <div className="date-string pr-4 self-center">
+        {convertStringtoDate(dueDate)}
+      </div>
     </div>
   );
 }

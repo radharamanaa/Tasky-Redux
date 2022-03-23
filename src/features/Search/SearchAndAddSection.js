@@ -28,7 +28,7 @@ function SearchAndAddSection() {
   }
   return (
     <>
-      <div className="w-3/4 grid grid-cols-5 content-between py-2 m-1 mx-auto border-x-0 border-y-0">
+      <div className="xl:w-3/4 grid grid-cols-5 content-between py-2 m-1 mx-auto border-x-0 border-y-0">
         <div className="col-span-3">
           <input
             onChange={search}
@@ -38,16 +38,19 @@ function SearchAndAddSection() {
             placeholder="Search..."
           />
         </div>
-        <div className="flex col-span-2 m-2 justify-center bg-indigo-600">
+        <div
+          className="flex col-span-2 m-2
+         justify-center rounded-md bg-indigo-600"
+        >
           <button
             onClick={toggleModall}
-            className="inline-block text-center p-2 rounded-lg  text-slate-100 text-xl justify-center"
+            className="inline-block text-center p-2 rounded-lg  text-slate-100 font-thin text-xl justify-center"
           >
             Add Task
           </button>
         </div>
       </div>
-      <div className="w-3/4 mx-auto">
+      <div className="xl:w-3/4 mx-auto">
         <Hr />
       </div>
     </>

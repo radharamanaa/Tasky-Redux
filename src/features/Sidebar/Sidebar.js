@@ -8,11 +8,11 @@ function Sidebar() {
   const categories = useSelector(getCategories);
   const isFilterOn = useSelector(getFilterState);
   const dispatch = useDispatch();
-  let style = { display: "block" };
+  let style = { display: "flex" };
   if (!isFilterOn) {
     style = { display: "none" };
   } else {
-    style = { display: "block" };
+    style = { display: "flex" };
   }
   function clearCats() {
     dispatch(makeAllCatsVisible());
@@ -27,7 +27,7 @@ function Sidebar() {
         Categories
       </h2>
       <div className="flex flex-row sm:flex-col px-2 mx-2 justify-center">
-        <div className="flex sm:flex sm:flex-col p-2 gap-1 list-disc justify-center ">
+        <div className="flex sm:flex sm:flex-col p-2 gap-1 list-disc justify-center items-center">
           {categories.map((item) => (
             <SingleCategory
               key={item.name}
@@ -37,8 +37,8 @@ function Sidebar() {
           ))}
           <div
             style={style}
-            className="bg-orange-700 w-2/3  
-            text-slate-100 text-center p-2 mx-auto rounded-md"
+            className="bg-indigo-700 w-2/3  items-center first-letter:
+            text-slate-100 text-center p-2 mx-auto rounded-md justify-center"
           >
             <button type="button" onClick={clearCats}>
               Clear

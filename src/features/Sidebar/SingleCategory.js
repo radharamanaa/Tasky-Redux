@@ -17,7 +17,7 @@ function SingleCategory({ name, isVisible }) {
     <div
       style={style}
       className="self-center my-4 text-center p-2 rounded-full capitalize
-     text-xs cursor-pointer bg-indigo-600 text-slate-100 w-3/4"
+     text-xs cursor-pointer bg-pink-500 text-slate-100 w-3/4"
       onClick={filterCat}
     >
       {name}

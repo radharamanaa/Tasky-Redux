@@ -164,6 +164,7 @@ function Modal() {
                 ref={taskTitleRef}
                 required
                 minLength={8}
+                maxLength={30}
                 placeholder="Task title"
               />
             </div>

@@ -9,8 +9,9 @@ export const taskSlice = createSlice({
     setState: (state, action) => action.payload,
     addTask: (state, action) => {
       let newTask = action.payload;
-      newTask.categories.forEach(
-        (item) => (item.name = item.name.toLocaleLowerCase())
+      action.payload.title = action.payload.title.trim();
+      action.payload.categories.forEach(
+        (item) => (item.name = item.name.toLocaleLowerCase().trim())
       );
       let duplicateTask = state.tasks.find(
         (item) =>
@@ -73,8 +74,12 @@ export const taskSlice = createSlice({
     searchInTasks: (state, action) => {
       state.tasks.forEach((item) => {
         if (
-          item.title.toLocaleLowerCase().includes(action.payload) ||
-          item.desc.toLocaleLowerCase().includes(action.payload)
+          item.title
+            .toLocaleLowerCase()
+            .includes(action.payload.toLocaleLowerCase()) ||
+          item.desc
+            .toLocaleLowerCase()
+            .includes(action.payload.toLocaleLowerCase())
         ) {
           item.isVisible = true;
           item.searchString = action.payload;
@@ -160,19 +165,21 @@ export const taskSlice = createSlice({
       let sett = new Set();
       //find all unique categories from all remaining tasks
       for (const task of state.tasks) {
-        task.categories.forEach((item) => sett.add(item.name));
+        task.categories.forEach((item) =>
+          sett.add(item.name.toLocaleLowerCase())
+        );
       }
 
       let deleteCatsSet = new Set();
       //if deletedtask categories are not found
       //in remaining tasks put in delete arr to delete
       for (const category of action.payload.categories) {
-        if (!sett.has(category.name)) {
-          deleteCatsSet.add(category.name);
+        if (!sett.has(category.name.toLocaleLowerCase())) {
+          deleteCatsSet.add(category.name.toLocaleLowerCase());
         }
       }
       state.categories = state.categories.filter(
-        (item) => !deleteCatsSet.has(item.name)
+        (item) => !deleteCatsSet.has(item.name.toLocaleLowerCase())
       );
       console.log(state.categories);
     },

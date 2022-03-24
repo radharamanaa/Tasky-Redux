@@ -7,6 +7,7 @@ import SearchAndAddSection from "./features/Search/SearchAndAddSection";
 import Sidebar from "./features/Sidebar/Sidebar";
 import { setState } from "./features/slices/Tasks/taskSlice";
 import TaskSection from "./features/Tasks/TaskSection";
+import "./features/Tasks/css/task.css";
 
 let initialLoad = true;
 const keyForApp = "tasky-redux-abhi";
@@ -31,12 +32,17 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-slate-100">
+    <div
+      className=""
+      style={{
+        backgroundImage: 'url("https://source.unsplash.com/5nUNdLueQio")',
+      }}
+    >
       <Modal />
       <Header />
       <SearchAndAddSection />
-      <div className="bg-gray-100 h-screen">
-        <div className="flex flex-col sm:grid sm:grid-cols-5 md:w-11/12  xl:w-3/4  mx-auto border-x border-y  mt-4 ">
+      <div className="w-11/12 xl:w-full mx-auto h-screen">
+        <div className="task-section flex flex-col sm:grid sm:grid-cols-5 md:w-11/12  xl:w-3/4  mx-auto mt-4 ">
           <Sidebar />
           <TaskSection />
         </div>

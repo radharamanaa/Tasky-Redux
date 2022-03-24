@@ -12,7 +12,7 @@ function Task({ title, desc, date, isFavorite, isVisible, categories }) {
   let classes =
     "task-item relative shadow-lg flex-wrap flex-col text-slate-700 border-2 " +
     "bg-slate-50" +
-    "border-violet-700 rounded-lg transition-all w-48 bg-slate-100/60";
+    "border-violet-700 rounded-lg transition-all w-48 bg-slate-100";
   if (isVisible) {
     classes += " flex";
   } else classes += " hidden";
@@ -61,7 +61,7 @@ function Task({ title, desc, date, isFavorite, isVisible, categories }) {
       >
         <div className="flex h-full w-full bg-neutral-500/80">
           <div
-            className="edit  flex flex-1 p-4 items-center justify-center 
+            className="edit flex flex-1 p-4 items-center justify-center 
           text-sm  text-neutral-100 cursor-pointer"
           >
             <svg

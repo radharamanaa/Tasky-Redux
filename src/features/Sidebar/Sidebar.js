@@ -20,8 +20,8 @@ function Sidebar() {
   }
   return (
     <div
-      className="flex-col justify-center col-span-1 border-r-4 
-    border-violet-700 bg-gray-100 pt-4 min-h-full"
+      className=" rounded-l-md flex-col justify-center col-span-1 border-r-4 
+    border-violet-700 bg-gray-100/80 pt-4 min-h-full"
     >
       <h2 className="text-2xl font-thin text-orange-700 text-center items-center underline underline-offset-4">
         Categories

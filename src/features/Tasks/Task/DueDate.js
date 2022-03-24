@@ -6,16 +6,11 @@ import {
 
 function DueDateAndFav({ dueDate, isFavorite }) {
   let classes =
-    "date flex items-baseline py-1 m-4 font-semibold text-xs bg-slate-200 rounded-full ";
-  if (isFavorite) {
-    classes += "text-red-800";
-  } else {
-    classes += "text-gray-800";
-  }
+    "date flex items-baseline py-1 m-4 font-semibold text-xs bg-slate-200 rounded-full text-gray-800";
 
   return (
     <div className={classes}>
-      <div className="time-icon flex items-baseline align-baseline self-end">
+      <div className="time-icon flex items-baseline align-baseline self-end p-1 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-4 w-4 mr-2 self-end"

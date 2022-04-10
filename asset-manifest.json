@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Tasky-Redux/static/css/main.c2703a73.css",
-    "main.js": "/Tasky-Redux/static/js/main.52ab16fc.js",
+    "main.js": "/Tasky-Redux/static/js/main.34e92ce2.js",
     "static/media/undraw_start_building_re_xani.svg": "/Tasky-Redux/static/media/undraw_start_building_re_xani.f074f268c419cedb1d334fb272fda941.svg",
     "index.html": "/Tasky-Redux/index.html",
     "main.c2703a73.css.map": "/Tasky-Redux/static/css/main.c2703a73.css.map",
-    "main.52ab16fc.js.map": "/Tasky-Redux/static/js/main.52ab16fc.js.map"
+    "main.34e92ce2.js.map": "/Tasky-Redux/static/js/main.34e92ce2.js.map"
   },
   "entrypoints": [
     "static/css/main.c2703a73.css",
-    "static/js/main.52ab16fc.js"
+    "static/js/main.34e92ce2.js"
   ]
 }

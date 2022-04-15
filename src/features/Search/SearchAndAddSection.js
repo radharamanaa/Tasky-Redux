@@ -41,12 +41,10 @@ function SearchAndAddSection() {
         </div>
         <div
           className="flex sm:col-span-2 m-2
-         justify-center rounded-md bg-indigo-600"
+         justify-center rounded-md bg-indigo-600 cursor-pointer"
+          onClick={toggleModall}
         >
-          <button
-            onClick={toggleModall}
-            className="inline-block text-center p-2 rounded-lg  text-slate-100 font-thin text-xl justify-center"
-          >
+          <button className="inline-block text-center p-2 rounded-lg  text-slate-100 font-thin text-xl justify-center">
             Add Task
           </button>
         </div>

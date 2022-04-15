@@ -9,9 +9,9 @@ function TaskSection() {
   return (
     <section
       className="task-section col-span-4 tasks flex flex-wrap task-section
-    justify-center content-start bg-gray-100/80 sm:bg-gray-100/80 rounded-r-md"
+    justify-center content-start bg-gray-50 sm:bg-gray-100 rounded-r-md"
     >
-      <div className="flex flex-wrap task-items w-4/5 justify-center gap-4  m-4 p-2 bg-transparent">
+      <div className="flex flex-wrap task-items w-4/5 justify-center gap-2  m-2 p-2 bg-transparent">
         {tasks.map((task) => (
           <Task
             key={task.title}

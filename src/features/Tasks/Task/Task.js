@@ -9,6 +9,7 @@ import TaskDesc from "./TaskDesc";
 import TaskTitle from "./TaskTitle";
 
 function Task({ title, desc, date, isFavorite, isVisible, categories }) {
+  const dispatch = useDispatch();
   let classes =
     "task-item relative shadow-lg flex-wrap flex-col text-slate-700 border-2 " +
     "bg-slate-50" +
@@ -25,7 +26,6 @@ function Task({ title, desc, date, isFavorite, isVisible, categories }) {
   function disableCrud() {
     document.getElementById(id).style.display = "none";
   }
-  const dispatch = useDispatch();
   function editTaskk() {
     dispatch(editTask(title));
   }
@@ -50,8 +50,10 @@ function Task({ title, desc, date, isFavorite, isVisible, categories }) {
           <Category category={item} />
         ))}
       </div>
-      <TaskTitle title={title} />
-      <TaskDesc taskDesc={desc} />
+      <div className="h-32">
+        <TaskTitle title={title} />
+        <TaskDesc taskDesc={desc} />
+      </div>
       <Hr />
       <DateAndHearts dueDate={date} isFavorite={isFavorite} />
       <div

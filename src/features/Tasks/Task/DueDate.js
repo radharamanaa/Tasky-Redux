@@ -1,19 +1,18 @@
-import React from "react";
-import {
-  convertStringtoDate,
-  dateStringToObj,
-} from "../../../app/InitialState";
+import React, { useEffect } from "react";
 
-function DueDateAndFav({ dueDate, isFavorite }) {
+import useDate from "./use-date";
+
+function DueDateAndFav({ dueDate }) {
   let classes =
     "date flex items-baseline py-1 m-4 font-semibold text-xs bg-slate-200 rounded-full text-gray-800";
+  const diffDate = useDate(dueDate);
 
   return (
     <div className={classes}>
-      <div className="time-icon flex items-baseline align-baseline self-end p-1 ">
+      <div className="time-icon flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 mr-2 self-end"
+          className="h-4 mr-2 self-end"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -26,8 +25,11 @@ function DueDateAndFav({ dueDate, isFavorite }) {
           />
         </svg>
       </div>
-      <div className="date-string pr-4 self-center">
-        {convertStringtoDate(dueDate)}
+      <div
+        className="date-string pr-1 self-center"
+        style={{ fontSize: ".65rem" }}
+      >
+        {diffDate}
       </div>
     </div>
   );

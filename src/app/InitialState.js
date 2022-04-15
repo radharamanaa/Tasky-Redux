@@ -1,4 +1,5 @@
 const initialState = {
+  isIntroDone: false,
   categoryToFilterby: null,
   searchString: null,
   isModalOpen: false,
@@ -10,9 +11,9 @@ const initialState = {
   ],
   tasks: [
     {
-      title: "Buy Vegetables for cooking",
-      desc: "Need to make food for children",
-      dueDate: "2018-06-14T08:45",
+      title: "Buy Groceries",
+      desc: "Store is Almost out!",
+      dueDate: "2022-04-18T08:45",
       isFavorite: false,
       categories: [
         { name: "shopping", isVisible: true },
@@ -31,7 +32,7 @@ export const getDateTimeStringCompatibleForInputField = (dateObj) => {
   let yr =
     dateObj.getFullYear() +
     "-" +
-    (dateObj.getMonth() + 1) +
+    ifSingleAddLeadingZero(dateObj.getMonth() + 1) +
     "-" +
     ifSingleAddLeadingZero(dateObj.getDate()) +
     "T" +

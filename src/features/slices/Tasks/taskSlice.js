@@ -183,6 +183,10 @@ export const taskSlice = createSlice({
       );
       console.log(state.categories);
     },
+    clearIntroModal: (state, action) => {
+      state.isIntroDone = true;
+      return state;
+    },
   },
 });
 
@@ -201,6 +205,7 @@ export const {
   makeAllTasksVisible,
   cancelEditTask,
   deleteTask,
+  clearIntroModal,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;

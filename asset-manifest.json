@@ -1,19 +1,15 @@
 {
   "files": {
-    "main.css": "/Tasky-Redux/static/css/main.6e59f66e.css",
-    "main.js": "/Tasky-Redux/static/js/main.309b5e98.js",
-    "static/media/Man nice Question Mark.svg": "/Tasky-Redux/static/media/Man nice Question Mark.d98e2111eb8bbf99832449aa634eec89.svg",
-    "static/media/Observing nicely.svg": "/Tasky-Redux/static/media/Observing nicely.6bfb6612d7b61fd65998342bab1cc310.svg",
-    "static/media/Woman Smiling.svg": "/Tasky-Redux/static/media/Woman Smiling.654245b5c03debd65152c53702f573b8.svg",
-    "static/media/Man Observing.svg": "/Tasky-Redux/static/media/Man Observing.1988becfdd54e3121afb5f443e8b6ee5.svg",
+    "main.css": "/Tasky-Redux/static/css/main.2ac6ddff.css",
+    "main.js": "/Tasky-Redux/static/js/main.fc5b7766.js",
+    "static/media/Thur.png": "/Tasky-Redux/static/media/Thur.558c5366b9d8e3858810.png",
     "static/media/undraw_start_building_re_xani.svg": "/Tasky-Redux/static/media/undraw_start_building_re_xani.f074f268c419cedb1d334fb272fda941.svg",
-    "static/media/Different tassk.svg": "/Tasky-Redux/static/media/Different tassk.82400a23f201444ae79a1ceb4377bf10.svg",
     "index.html": "/Tasky-Redux/index.html",
-    "main.6e59f66e.css.map": "/Tasky-Redux/static/css/main.6e59f66e.css.map",
-    "main.309b5e98.js.map": "/Tasky-Redux/static/js/main.309b5e98.js.map"
+    "main.2ac6ddff.css.map": "/Tasky-Redux/static/css/main.2ac6ddff.css.map",
+    "main.fc5b7766.js.map": "/Tasky-Redux/static/js/main.fc5b7766.js.map"
   },
   "entrypoints": [
-    "static/css/main.6e59f66e.css",
-    "static/js/main.309b5e98.js"
+    "static/css/main.2ac6ddff.css",
+    "static/js/main.fc5b7766.js"
   ]
 }

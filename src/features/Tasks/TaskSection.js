@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import { getTasks } from "../../app/InitialState";
 import Task from "./Task/Task";
 import "../Tasks/css/task.css";
-
+import doNothing from "../../svgs/Not found - HeartBroken (2).svg";
 function TaskSection() {
   const tasks = useSelector(getTasks);
+  let atleastOneTaskVisible = tasks.some((item) => item.isVisible);
   return (
     <section
       className="task-section col-span-4 tasks flex flex-wrap task-section
@@ -23,6 +24,11 @@ function TaskSection() {
             categories={task.categories}
           />
         ))}
+        {atleastOneTaskVisible || (
+          <div className="flex justify-center items-center p-2 m-2">
+            <img src={doNothing} className="h-96 w-96" />
+          </div>
+        )}
       </div>
     </section>
   );

@@ -29,10 +29,11 @@ const useDate = (taskDate) => {
       }
       toggle = !toggle;
       setDiffDate(
-        getDiffString(diffDays, diffHours, diffMins) +
+        objTaskDate.toDateString().substring(0, 11) +
+          "'" +
+          objTaskDate.toDateString().substring(13, 15) +
           " - " +
-          objTaskDate.toDateString().substring(0, 11) +
-          objTaskDate.toDateString().substring(13, 15)
+          getDiffString(diffDays, diffHours, diffMins)
       );
     }, 1000);
     return () => clearInterval(clearing);

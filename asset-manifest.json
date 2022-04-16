@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Tasky-Redux/static/css/main.4996545f.css",
-    "main.js": "/Tasky-Redux/static/js/main.e45d7841.js",
+    "main.js": "/Tasky-Redux/static/js/main.879eabb0.js",
     "static/media/Thur.png": "/Tasky-Redux/static/media/Thur.558c5366b9d8e3858810.png",
     "static/media/Not found - HeartBroken (2).svg": "/Tasky-Redux/static/media/Not found - HeartBroken (2).ab71fcefc087e1d0fa9f93f5796a15f3.svg",
-    "static/media/undraw_start_building_re_xani.svg": "/Tasky-Redux/static/media/undraw_start_building_re_xani.f074f268c419cedb1d334fb272fda941.svg",
+    "static/media/undraw_new_entries_re_cffr.svg": "/Tasky-Redux/static/media/undraw_new_entries_re_cffr.f0f904450aad94c762fb733a37c0d125.svg",
     "index.html": "/Tasky-Redux/index.html",
     "main.4996545f.css.map": "/Tasky-Redux/static/css/main.4996545f.css.map",
-    "main.e45d7841.js.map": "/Tasky-Redux/static/js/main.e45d7841.js.map"
+    "main.879eabb0.js.map": "/Tasky-Redux/static/js/main.879eabb0.js.map"
   },
   "entrypoints": [
     "static/css/main.4996545f.css",
-    "static/js/main.e45d7841.js"
+    "static/js/main.879eabb0.js"
   ]
 }

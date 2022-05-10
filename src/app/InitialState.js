@@ -13,7 +13,7 @@ const initialState = {
     {
       title: "Buy Groceries",
       desc: "Store is Almost out!",
-      dueDate: "2022-04-18T08:45",
+      dueDate: "2022-06-18T08:45",
       isFavorite: false,
       categories: [
         { name: "shopping", isVisible: true },

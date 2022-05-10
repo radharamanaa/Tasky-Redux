@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Hr from "../../decoration/Hr";
 import { deleteTask, editTask } from "../../slices/Tasks/taskSlice";
 import Category from "../Category";
@@ -10,6 +10,7 @@ import TaskTitle from "./TaskTitle";
 
 function Task({ title, desc, date, isFavorite, isVisible, categories }) {
   const dispatch = useDispatch();
+  // const searchString = useSelector((st) => st.counter.searchString);
   let classes =
     "task-item relative shadow-lg flex-wrap flex-col text-slate-700 border-2 " +
     "bg-slate-50" +
@@ -38,6 +39,11 @@ function Task({ title, desc, date, isFavorite, isVisible, categories }) {
     task.categories = categories;
     dispatch(deleteTask(task));
   }
+  // useEffect(() => {
+  //   if (isVisible) {
+
+  //   }
+  // }, []);
   return (
     <div
       className={classes}

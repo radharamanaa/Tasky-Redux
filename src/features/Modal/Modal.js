@@ -4,9 +4,7 @@ import {
   getCategories,
   getDateTimeStringCompatibleForInputField,
 } from "../../app/InitialState";
-import TaskTitle from "../Tasks/Task/TaskTitle";
 import ErrorDiv from "./ErrorDiv";
-import ReactDOM from "react-dom";
 import {
   addTask,
   cancelEditTask,
@@ -14,7 +12,7 @@ import {
   toggleModal,
 } from "../slices/Tasks/taskSlice";
 import Category from "../Tasks/Category";
-import addTaskSvg from "../../svgs/undraw_start_building_re_xani.svg";
+import addTaskSvg from "../../svgs/undraw_new_entries_re_cffr.svg";
 
 function Modal() {
   const taskTitleRef = useRef();
